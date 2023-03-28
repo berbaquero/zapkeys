@@ -4,6 +4,8 @@
 
 Give your users the ability to efficiently navigate and interact with your whole site using only their keyboards. Turn them into power users. ⌨️
 
+[![](https://badgen.net/bundlephobia/min/zapkeys)](https://bundlephobia.com/result?p=zapkeys) [![](https://badgen.net/bundlephobia/minzip/zapkeys)](https://bundlephobia.com/result?p=zapkeys)
+
 ## What it does
 
 With ZapKeys, users will be able to press <kbd>F</kbd> (or any other letter key; it's configurable), and every interactive element on the page – links, buttons, textareas, inputs – will be highlighted with a letter/sequence. Users can then press an element's letter/sequence and it will trigger that element's interaction – clicking on links and buttons, or focusing on inputs.
