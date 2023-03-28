@@ -83,6 +83,8 @@ export class ZapKeys {
   }
 
   private handleShortcuts(ev: KeyboardEvent): void {
+    ev.preventDefault();
+
     const pressedKey = ev.key;
     const singleKeyPressed = this.singleLetters.indexOf(pressedKey) >= 0;
     const sequenceKeyPressed = this.sequenceLetters.indexOf(pressedKey) >= 0;
