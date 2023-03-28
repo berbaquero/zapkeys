@@ -1,6 +1,6 @@
 # ZapKeys
 
-> The simplest way to make all your site’s interactions accessible via keyboard
+> The simplest way to make all your site’s interactions into keyboard shortcuts
 
 Give your users the ability to efficiently navigate and interact with your whole site using only their keyboards. Turn them into power users. ⌨️
 
