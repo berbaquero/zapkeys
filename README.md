@@ -1,103 +1,76 @@
-# TSDX User Guide
+# ZapKeys
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+> The simplest way to make all your site’s interactions accessible via keyboard
 
-> This TSDX setup is meant for developing libraries (not apps!) that can be published to NPM. If you’re looking to build a Node app, you could use `ts-node-dev`, plain `ts-node`, or simple `tsc`.
+Give your users the ability to efficiently navigate and interact with your whole site using only their keyboards. Turn them into power users. ⌨️
 
-> If you’re new to TypeScript, checkout [this handy cheatsheet](https://devhints.io/typescript)
+## What it does
 
-## Commands
+With ZapKeys, users will be able to press <kbd>F</kbd> (or any other letter key; it's configurable), and every interactive element on the page – links, buttons, textareas, inputs – will be highlighted with a letter/sequence. Users can then press an element's letter/sequence and it will trigger that element's interaction – clicking on links and buttons, or focusing on inputs.
 
-TSDX scaffolds your new library inside `/src`.
+With minimal effort, your site becomes completely usable with only the keyboard.
 
-To run TSDX, use:
+Users don't need to figure out nor remember specific shortcut sequences and you don't have to configure them.
 
-```bash
-npm start # or yarn start
-```
+## Framework-agnostic
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+ZapKeys works directly on top of the DOM. So it does not matter how the DOM is generated. This means it can work alongside any framework or library like React, Vue, Ember, Angular and any other or none at all.
 
-To do a one-off build, use `npm run build` or `yarn build`.
+## Simplest Usage
 
-To run tests, use `npm test` or `yarn test`.
+1. For the functionality, in your javascript:
 
-## Configuration
+   ```js
+   const shortcuts = new ZapKeys();
+   shortcuts.init();
+   ```
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+2. For the styles:
 
-### Jest
+   ```css
+   @import '~zapkeys/index.css';
+   ```
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+   or in your JS:
 
-### Bundle Analysis
+   ```js
+   import '~zapkeys/index.css';
+   ```
 
-[`size-limit`](https://github.com/ai/size-limit) is set up to calculate the real cost of your library with `npm run size` and visualize the bundle with `npm run analyze`.
+## Custom Configuration
 
-#### Setup Files
+### Functionality
 
-This is the folder structure we set up for you:
+ZapKeys has a few configuration options, during instantiation:
 
-```txt
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
+| Option                   | Description                                                                                                       | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| `startKey: string`       | The key what activates the shortcuts. Only supports single keys.                                                  | `"f"`   |
+| `onActive: () => void`   | Function to execute when ZapKeys is active; when the start key has been pressed and the elements are highlighted. | none    |
+| `onInactive: () => void` | Function to execute when ZapKeys becomes inactive; after an element has been triggered by a letter/sequence.      | none    |
 
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
+To customize these, pass them during instantiation:
 
 ```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
+const sk = new ZapKeys({
+  startKey: 'x',
+  onActive: () => console.log('It is active!'),
+});
 ```
 
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
+### Styling
 
-## Module Formats
+ZapKeys includes nice defaults styles for the shortcut letter indicators, but if you'd like to customize them, you could do so by:
 
-CJS, ESModules, and UMD module formats are supported.
+1. Not importing the `~zapkeys/index.css` file into your styles, and instead copying the CSS from it into your own, and
+2. Updating the `.__zk-letter` styles to your heart's content:
 
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
+   ```css
+   /* ...rest of the styles remain the same... */
 
-## Named Exports
+   .__zk-letter {
+     /* remove the default styles and your custom styles here */
+   }
 
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
+   /* ...rest of the styles remain the same */
+   ```

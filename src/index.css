@@ -8,6 +8,7 @@
   }
 }
 
+/* The styling for a shortcut */
 .__zk-letter {
   --size: 14px;
   position: absolute;

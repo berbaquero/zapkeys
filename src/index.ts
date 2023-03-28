@@ -5,7 +5,7 @@ type NodeCoordinates = {
   left: number;
 };
 
-export interface TeclasOptions {
+export interface ZapKeysOptions {
   startKey?: string;
   onActive?: () => void;
   onInactive?: () => void;
@@ -24,7 +24,7 @@ const whitelist = [
 ];
 const shortcutLetters = 'asdfghjklcpwem';
 
-export default class Teclas {
+export class ZapKeys {
   private selector: string;
   private startKey: string;
   private shortcuts: AssignedShortcuts;
@@ -35,7 +35,7 @@ export default class Teclas {
   private onActive?: () => void;
   private onInactive?: () => void;
 
-  constructor({ startKey = 'f', onActive, onInactive }: TeclasOptions = {}) {
+  constructor({ startKey = 'f', onActive, onInactive }: ZapKeysOptions = {}) {
     this.selector = whitelist.join(',');
     this.startKey = startKey;
     this.shortcuts = new Map<string, HTMLElement>();
