@@ -257,9 +257,10 @@ function isInViewport(element: HTMLElement): boolean {
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <=
+    Math.floor(rect.bottom) <=
       (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    Math.floor(rect.right) <=
+      (window.innerWidth || document.documentElement.clientWidth)
   );
 }
 
