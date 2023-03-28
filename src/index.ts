@@ -94,7 +94,7 @@ export class ZapKeys {
         !this.shortcuts.has(this.firstSequenceLetter + pressedKey))
     ) {
       // Key/sequence pressed is not a shortcut
-      document.getElementById('sk-overlay')!.click(); // Trigger click, ergo restart
+      document.getElementById('zk-overlay')!.click(); // Trigger click, ergo restart
       return;
     }
 
@@ -106,7 +106,7 @@ export class ZapKeys {
         this.firstSequenceLetter = pressedKey;
         this.sequenceMode = true;
         // hide other letters
-        document.getElementById('sk-overlay')!.classList.add('sequence');
+        document.getElementById('zk-overlay')!.classList.add('sequence');
         hideShortcut(pressedKey);
       } else {
         // trigger single key shortcut
@@ -201,7 +201,7 @@ export class ZapKeys {
 
 function hideLetterIndicators(): void {
   // Hide overlay
-  const overlayDiv = document.getElementById('sk-overlay')!;
+  const overlayDiv = document.getElementById('zk-overlay')!;
   overlayDiv.parentNode!.removeChild(overlayDiv);
 }
 
@@ -232,7 +232,7 @@ function getNodeCoordinates(elem: HTMLElement): NodeCoordinates {
 function showLetterIndicators(assignedShortcuts: AssignedShortcuts): void {
   // Add overlay div "canvas"
   const overlayDiv = document.createElement('div');
-  overlayDiv.id = 'sk-overlay';
+  overlayDiv.id = 'zk-overlay';
   overlayDiv.className = '__zk-overlay';
   document.body.appendChild(overlayDiv);
 
@@ -296,7 +296,7 @@ function generateShortcutLetters(
 function hideShortcut(sequenceLetter: string): void {
   const elementsToHide = Array.from(
     document.querySelectorAll<HTMLElement>(
-      `#sk-overlay > :not([data-sk-seq=${sequenceLetter}])`
+      `#zk-overlay > :not([data-zk-seq=${sequenceLetter}])`
     )
   );
   elementsToHide.forEach(element => (element.style.display = 'none'));
@@ -306,7 +306,7 @@ function hideShortcut(sequenceLetter: string): void {
 function triggerClickableElement(element: HTMLElement): void {
   if (isNewWindowLink(element)) {
     element.focus();
-    document.getElementById('sk-overlay')!.click(); // Trigger click, ergo restart
+    document.getElementById('zk-overlay')!.click(); // Trigger click, ergo restart
   } else {
     element.focus();
     element.click(); // Programmatic click will trigger click listener, ergo restart
@@ -320,7 +320,7 @@ function triggerMixedElement(element: HTMLInputElement): void {
 
 function triggerFocusableElement(element: HTMLElement): void {
   element.focus();
-  document.getElementById('sk-overlay')!.click(); // Trigger click, ergo restart
+  document.getElementById('zk-overlay')!.click(); // Trigger click, ergo restart
 }
 
 function triggerToggableElement(element: HTMLElement): void {
