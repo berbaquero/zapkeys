@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teclas</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .square {
+        width: 300px;
+        height: 300px;
+      }
+
+      .word-link {
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>Pressing <code>F</code> will show letters for trigger shortcuts.</p>
+
+    <a href="#link">This is a link</a>
+    <div class="square"></div>
+    <button onclick="alert('hey!')">Click me</button>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+      quaerat modi nihil eveniet dolor beatae!
+      <a href="javascript:;"
+        >Quasi facere molestias ut, inline link est voluptatum nisi iure</a
+      >, dolorem corporis aperiam nam fugit, minima officia!
+    </p>
+    <details>
+      <summary>
+        Reveal this!
+      </summary>
+      <p>I'm revealed</p>
+    </details>
+    <div class="square"></div>
+    <button onclick="alert('Action!')">Action</button>
+    <div class="square"></div>
+    <div class="square"></div>
+    <input placeholder="Test field" />
+    <input type="button" value="I am an input" />
+    <input type="submit" />
+    <textarea name="dog" id="doggo" cols="30" rows="10"></textarea>
+    <div class="square"></div>
+    <a href="/" target="_blank">Opens in new tab</a>
+
+    <script type="module" src="./test.js"></script>
+
+    <h2>Sequence testing</h2>
+    <div id="sequence-testing"></div>
+  </body>
+</html>

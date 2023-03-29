@@ -2,3 +2,5 @@
 .DS_Store
 node_modules
 dist
+test/index.js
+test/index.css

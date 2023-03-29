@@ -13,6 +13,8 @@
     "start": "tsdx watch",
     "build": "tsdx build && cp src/index.css dist/index.css",
     "test": "tsdx test",
+    "pretest-page": "yarn build && cp dist/index.css test/index.css && cp dist/zapkeys.esm.js test/index.js",
+    "test-page": "npx serve test",
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "size": "size-limit",
