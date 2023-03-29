@@ -252,11 +252,12 @@ function getElements(selector: string): HTMLElement[] {
     .filter(isInViewport);
 }
 
+/** Only elements that are wholy inside the viewport are included */
 function isInViewport(element: HTMLElement): boolean {
   const rect = element.getBoundingClientRect();
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
+    Math.ceil(rect.top) >= 0 &&
+    Math.ceil(rect.left) >= 0 &&
     Math.floor(rect.bottom) <=
       (window.innerHeight || document.documentElement.clientHeight) &&
     Math.floor(rect.right) <=
