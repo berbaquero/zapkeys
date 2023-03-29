@@ -217,8 +217,8 @@ function createLetterIndicator(
   letterSquare.textContent = letter;
   letterSquare.style.top = `${coordinates.top}px`;
   letterSquare.style.left = `${coordinates.left}px`;
-  letterSquare.dataset.sk = letter.length === 1 ? 'hide' : 'show';
-  letterSquare.dataset.skSeq = letter[0];
+  letterSquare.dataset.zk = letter.length === 1 ? 'hide' : 'show';
+  letterSquare.dataset.zkSeq = letter[0];
   return letterSquare;
 }
 

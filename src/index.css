@@ -31,10 +31,10 @@
 
 /*
   This is applied when the shortcut is a sequence.
-  Single-letter shortcuts don't have a different data-sk attribute
+  Single-letter shortcuts don't have a different data-zk attribute
   therefore hiding them with this selector
 */
-.__zk-overlay.sequence :not([data-sk='show']) {
+.__zk-overlay.sequence :not([data-zk='show']) {
   display: none;
 }
 
@@ -43,6 +43,6 @@
   (which should be the ones from the sequence)
   will have its first letter transparent
 */
-.__zk-overlay.sequence [data-sk='show']::first-letter {
+.__zk-overlay.sequence [data-zk='show']::first-letter {
   color: rgba(0, 0, 0, 0.25);
 }
