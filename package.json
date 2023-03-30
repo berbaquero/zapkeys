@@ -18,7 +18,8 @@
     "lint": "tsdx lint",
     "prepare": "yarn build",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "home": "npx browser-sync start --server 'home' --files 'home'"
   },
   "peerDependencies": {},
   "husky": {

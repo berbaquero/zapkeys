@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="JS utility for the easiest and quickest keyboard shortcuts for your webpage"
+    />
+    <meta name="author" content="Bernardo Baquero Stand" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>"
+    />
+    <title>
+      ZapKeys // easiest and quickest keyboard shortcuts for your webpage
+    </title>
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        --bg-dot-color: hsl(197, 92%, 86%);
+        --bg-dot-space: 14px;
+
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 1em;
+        background-image: repeating-radial-gradient(
+          var(--bg-dot-color),
+          var(--bg-dot-color) 1px,
+          transparent 1px,
+          transparent 100%
+        );
+        background-color: #daf5ff;
+        background-size: var(--bg-dot-space) var(--bg-dot-space);
+      }
+      @media (min-width: 36em) {
+        body {
+          display: flex;
+        }
+        .container {
+          max-width: 32em;
+        }
+      }
+      .mono {
+        font-family: SFMono-Regular, Menlo, monospace;
+      }
+      .sans-serif {
+        font-family: -apple-system, BlinkMacSystemFont, -apple-system-font,
+          'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+      .white {
+        color: white;
+      }
+      .black {
+        color: black;
+      }
+      .block {
+        display: block;
+      }
+      .inline-block {
+        display: inline-block;
+      }
+      .text-big {
+        font-size: 2.8em;
+      }
+      .text-medium {
+        font-size: 1.2em;
+      }
+      .title {
+        letter-spacing: 1.5px;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      .pb-1 {
+        padding-bottom: 1em;
+      }
+      .mb-0 {
+        margin-bottom: 0;
+      }
+      .mt-0 {
+        margin-top: 0;
+      }
+      .mb-1 {
+        margin-bottom: 1em;
+      }
+      .mb-2 {
+        margin-bottom: 2em;
+      }
+      .mr-1 {
+        margin-right: 1em;
+      }
+      .link-bg {
+        background-color: hsl(197, 92%, 46%);
+      }
+      .code-bg {
+        background-color: hsla(155, 89%, 26%, 0.5);
+      }
+      .wrap {
+        padding: 1.2em;
+        border-radius: 7px;
+      }
+      .flex {
+        display: flex;
+      }
+      .demo {
+        border-bottom: 2px solid var(--bg-dot-color);
+      }
+      kbd {
+        font-size: 1.4rem;
+        border: 1px solid;
+        padding-inline: 0.4rem;
+        border-radius: 4px;
+        border-bottom-width: 3px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body class="black sans-serif">
+    <main class="container">
+      <div class="bold">/ / / / / / / / / / / / / /</div>
+      <h1 class="title text-big mt-0 mb-0">
+        <a class="black" href="/">
+          ZapKeys
+        </a>
+      </h1>
+      <p class="text-medium mt-0 mb-2">
+        Simple JS utility to add easy-to-use keyboard shortcuts to webpages.
+      </p>
+      <!-- Demo -->
+      <div class="demo mb-1 pb-1">
+        <p>Press <kbd>F</kbd> to try it on this page:</p>
+        <div class="flex">
+          <p id="load-time" class="mt-0 mb-0 mr-1">Current time</p>
+          <div>
+            <button id="now" onclick="getNow()" class="mr-1">
+              Refresh time
+            </button>
+          </div>
+          <div>
+            <button onclick="location.reload()">Reload page</button>
+          </div>
+        </div>
+      </div>
+
+      <p>As easy as:</p>
+      <div class="wrap white code-bg mb-1">
+        <code class="block mono text-medium">
+          &lt;link href="zapkeys.css"&gt;
+        </code>
+      </div>
+      <div class="wrap white code-bg mb-1">
+        <code class="block mono text-medium">
+          const zk = new ZapKeys();
+        </code>
+        <code class="block mono text-medium">
+          zk.init();
+        </code>
+      </div>
+      <p>
+        (View-source this page to see the complete working implementation).
+      </p>
+
+      <div>
+        <a
+          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          href="https://berbaquero.com/posts/2023/03/introducing-zapkeys/"
+          >Announcement</a
+        >
+        <a
+          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          href="https://www.npmjs.com/package/zapkeys"
+          >npm</a
+        >
+        <a
+          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          href="https://github.com/berbaquero/zapkeys"
+          >GitHub</a
+        >
+        <span class="wrap inline-block white link-bg mr-1 mb-1">
+          By
+          <a class="white bold" href="https://berbaquero.com/about/"
+            >Bernardo Baquero Stand</a
+          >
+        </span>
+      </div>
+    </main>
+
+    <!-- Show current time (for demo) -->
+    <script>
+      function getNow() {
+        const now = new Date();
+        document.getElementById(
+          'load-time'
+        ).innerText = `Current time: ${now.getTime()}`;
+      }
+      getNow();
+    </script>
+
+    <!-- Load ZapKeys -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/zapkeys@0.2.1/dist/index.css"
+    />
+    <script type="module">
+      import { ZapKeys } from 'https://unpkg.com/zapkeys@0.2.1/dist/zapkeys.esm.js';
+      const zapkeys = new ZapKeys(); // default config - pressing 'F' will activate the shortcuts
+      zapkeys.init();
+    </script>
+  </body>
+</html>
