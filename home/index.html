@@ -23,8 +23,13 @@
         box-sizing: border-box;
       }
       body {
-        --bg-dot-color: hsl(197, 92%, 86%);
-        --bg-dot-space: 14px;
+        --color-1: hsl(253, 100%, 57%);
+        --color-4: hsl(314, 88%, 51%);
+        --color-5: hsl(338, 100%, 94%);
+        --bg-color: var(--color-5);
+        --accent-color: var(--color-4);
+        --bg-dot-color: hsl(314, 61%, 77%);
+        --bg-dot-space: 1.4rem;
 
         justify-content: center;
         align-items: center;
@@ -34,11 +39,12 @@
         background-image: repeating-radial-gradient(
           var(--bg-dot-color),
           var(--bg-dot-color) 1px,
-          transparent 1px,
-          transparent 100%
+          var(--bg-color) 1px,
+          var(--bg-color) 100%
         );
-        background-color: #daf5ff;
+        background-color: var(--bg-color);
         background-size: var(--bg-dot-space) var(--bg-dot-space);
+        color: var(--color-1);
       }
       @media (min-width: 36em) {
         body {
@@ -55,11 +61,8 @@
         font-family: -apple-system, BlinkMacSystemFont, -apple-system-font,
           'Helvetica Neue', Helvetica, Arial, sans-serif;
       }
-      .white {
-        color: white;
-      }
-      .black {
-        color: black;
+      .color-1 {
+        color: var(--color-1);
       }
       .block {
         display: block;
@@ -98,46 +101,65 @@
         margin-right: 1em;
       }
       .link-bg {
-        background-color: hsl(197, 92%, 46%);
+        color: white;
+        text-decoration-color: var(--color-5);
+        background-color: var(--color-1);
       }
       .code-bg {
-        background-color: hsla(155, 89%, 26%, 0.5);
+        border: 1px solid var(--color-4);
+
+        background-color: var(--bg-color);
       }
       .wrap {
-        padding: 1.2em;
+        padding: 0.6rem 1rem;
         border-radius: 7px;
       }
       .flex {
         display: flex;
       }
-      .demo {
-        border-bottom: 2px solid var(--bg-dot-color);
-      }
       kbd {
         font-size: 1.4rem;
-        border: 1px solid;
+        border: 1px solid var(--color-4);
+        border-bottom-width: 5px;
         padding-inline: 0.4rem;
         border-radius: 4px;
-        border-bottom-width: 3px;
-        background-color: white;
+        background-color: var(--color-1);
+        color: var(--color-5);
+      }
+      button {
+        border: 0;
+        padding: 0.4rem 0.7rem;
+        border-radius: 8px;
+        color: white;
+        background-color: var(--color-1);
+      }
+      .separate {
+        margin-block-end: 4rem;
       }
     </style>
   </head>
-  <body class="black sans-serif">
+  <body class="color-1 sans-serif">
     <main class="container">
-      <div class="bold">/ / / / / / / / / / / / / /</div>
-      <h1 class="title text-big mt-0 mb-0">
-        <a class="black" href="/">
-          ZapKeys
-        </a>
-      </h1>
-      <p class="text-medium mt-0 mb-2">
-        Simple JS utility to add easy-to-use keyboard shortcuts to webpages.
-      </p>
+      <div class="separate">
+        <div class="bold">/ / / / / / / / / / / / / /</div>
+        <h1 class="title text-big mt-0 mb-0">
+          <a
+            class="color-1"
+            href="/"
+            style="text-decoration-color: var(--accent-color)"
+          >
+            ZapKeys
+          </a>
+        </h1>
+        <p class="text-medium mt-0 mb-2">
+          Simple JS utility to add easy-to-use keyboard shortcuts to webpages.
+        </p>
+      </div>
+
       <!-- Demo -->
-      <div class="demo mb-1 pb-1">
-        <p>Press <kbd>F</kbd> to try it on this page:</p>
-        <div class="flex">
+      <div class="mb-1 pb-1 separate">
+        <p>Press your <kbd>F</kbd> key to try it on this page:</p>
+        <div class="flex" style="align-items: center;">
           <p id="load-time" class="mt-0 mb-0 mr-1">Current time</p>
           <div>
             <button id="now" onclick="getNow()" class="mr-1">
@@ -150,37 +172,40 @@
         </div>
       </div>
 
-      <p>As easy as:</p>
-      <div class="wrap white code-bg mb-1">
-        <code class="block mono text-medium">
-          &lt;link href="zapkeys.css"&gt;
-        </code>
+      <div class="separate">
+        <p>As easy as:</p>
+        <div class="wrap code-bg mb-1">
+          <code class="block mono text-medium">
+            &lt;link href="zapkeys.css"&gt;
+          </code>
+        </div>
+        <div class="wrap  code-bg mb-1">
+          <code class="block mono text-medium">
+            const zk = new ZapKeys();
+          </code>
+          <code class="block mono text-medium">
+            zk.init();
+          </code>
+        </div>
+        <p>
+          (View-source this page to see the complete working implementation).
+        </p>
       </div>
-      <div class="wrap white code-bg mb-1">
-        <code class="block mono text-medium">
-          const zk = new ZapKeys();
-        </code>
-        <code class="block mono text-medium">
-          zk.init();
-        </code>
-      </div>
-      <p class="mb-2">
-        (View-source this page to see the complete working implementation).
-      </p>
 
+      <!-- Links -->
       <div>
         <a
-          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          class="wrap inline-block link-bg bold mr-1 mb-1"
           href="https://berbaquero.com/posts/2023/03/zapkeys/"
           >Announcement</a
         >
         <a
-          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          class="wrap inline-block link-bg bold mr-1 mb-1"
           href="https://www.npmjs.com/package/zapkeys"
           >npm</a
         >
         <a
-          class="wrap inline-block link-bg white bold mr-1 mb-1"
+          class="wrap inline-block link-bg bold mr-1 mb-1"
           href="https://github.com/berbaquero/zapkeys"
           >GitHub</a
         >
